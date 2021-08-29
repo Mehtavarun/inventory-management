@@ -8,9 +8,7 @@ export default StyleSheet.create({
     lineHeight: 58,
   },
   loginHeading: {
-    textAlign: "center",
-    height: Dimensions.get("window").height - 270,
-    marginBottom: -450,
+    marginBottom: 60,
     color: "#546E7A",
   },
   loginInput: {
@@ -24,13 +22,15 @@ export default StyleSheet.create({
     backgroundColor: "#ECEFF1",
   },
   loginContainer: {
-    justifyContent: "center",
+    flex: 1,
     height: Dimensions.get("window").height,
     width: Dimensions.get("window").width,
   },
   loginForm: {
-    marginLeft: Dimensions.get("window").width / 30,
-    marginRight: Dimensions.get("window").width / 30,
+    justifyContent: "center",
+    flex: 1,
+    paddingLeft: 15,
+    paddingRight: 15,
   },
   loginSurface: {
     paddingLeft: 15,
@@ -40,5 +40,8 @@ export default StyleSheet.create({
     justifyContent: "center",
     elevation: 10,
     borderRadius: 7,
+  },
+  keyboardContainer: {
+    flex: 1,
   },
 });
