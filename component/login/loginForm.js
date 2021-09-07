@@ -53,9 +53,7 @@ function LoginForm(props) {
   );
 
   return (
-    <Surface
-      style={[styles.loginSurface, { backgroundColor: colors.secondary }]}
-    >
+    <Surface style={[styles.loginSurface, { backgroundColor: colors.primary }]}>
       <Text color="red">{loginErr}</Text>
       <TextInput
         onChangeText={setUsername}

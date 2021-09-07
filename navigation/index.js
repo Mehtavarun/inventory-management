@@ -7,44 +7,45 @@ import ItemListScreen from "../component/itemList";
 import ItemScreen from "../component/item";
 import Header from "../component/header";
 import {
-  LoginRoute,
-  BarcodeScannerRoute,
-  ItemListRoute,
-  ItemRoute,
+  Login,
+  BarcodeScanner,
+  ItemList,
+  Item,
 } from "../component/utils/constants";
 
 const Stack = createNativeStackNavigator();
 
 function Routes() {
-  const Header = () => <Header />;
+  const headerComp = (props) => <Header {...props} />;
 
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName={LoginRoute}
-        // screenOptions={{
-        //   header: Header,
-        // }}
+        initialRouteName={Login.route}
+        screenOptions={{ header: (props) => headerComp(props) }}
       >
         <Stack.Screen
-          name={LoginRoute}
+          name={Login.route}
           component={LoginScreen}
-          options={{ headerShown: true }}
+          options={{
+            headerShown: false,
+            title: Login.title,
+          }}
         />
         <Stack.Screen
-          name={BarcodeScannerRoute}
+          name={BarcodeScanner.route}
           component={BarcodeScannerScreen}
-          options={{ headerShown: true }}
+          options={{ headerShown: true, title: BarcodeScanner.title }}
         />
         <Stack.Screen
-          name={ItemListRoute}
+          name={ItemList.route}
           component={ItemListScreen}
-          options={{ headerShown: true }}
+          options={{ headerShown: true, title: ItemList.title }}
         />
         <Stack.Screen
-          name={ItemRoute}
+          name={Item.route}
           component={ItemScreen}
-          options={{ headerShown: true }}
+          options={{ headerShown: true, title: Item.title }}
         />
       </Stack.Navigator>
     </NavigationContainer>

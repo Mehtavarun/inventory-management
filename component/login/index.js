@@ -6,7 +6,7 @@ import LoginForm from "./loginForm";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getUserObject } from "../utils/util";
 import { IM_LOGGED_IN, IM_USERS } from "../utils/constants";
-import { BarcodeScannerRoute } from "../utils/constants";
+import { BarcodeScanner } from "../utils/constants";
 
 function Login(props) {
   const { navigation } = props;
@@ -25,7 +25,7 @@ function Login(props) {
             JSON.stringify(getUserObject(username, password))
           );
           handleInvalidUser("");
-          navigation.navigate(BarcodeScannerRoute);
+          navigation.navigate(BarcodeScanner.route);
         } else {
           handleInvalidUser("Invalid password.");
         }

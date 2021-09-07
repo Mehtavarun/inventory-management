@@ -1,8 +1,8 @@
 // routes
-export const LoginRoute = "Login";
-export const BarcodeScannerRoute = "Barcode";
-export const ItemListRoute = "ItemList";
-export const ItemRoute = "Item";
+export const Login = { route: "Login", title: "Login" };
+export const BarcodeScanner = { route: "Barcode", title: "Scan Barcode" };
+export const ItemList = { route: "ItemList", title: "All Items" };
+export const Item = { route: "Item", title: "Item" };
 
 // user
 export const IM_LOGGED_IN = "imLoggedIn";
