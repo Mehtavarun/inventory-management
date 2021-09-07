@@ -1,31 +1,31 @@
 import React from "react";
-import {
-  View,
-  KeyboardAvoidingView,
-  TouchableWithoutFeedback,
-  Keyboard,
-} from "react-native";
+import { View, KeyboardAvoidingView, Platform } from "react-native";
 import { Text } from "react-native-paper";
 import styles from "../../styles";
 import LoginForm from "./loginForm";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getUserObject } from "../utils/util";
+import { IM_LOGGED_IN, IM_USERS } from "../utils/constants";
+import { BarcodeScannerRoute } from "../utils/constants";
 
-function Login() {
+function Login(props) {
+  const { navigation } = props;
+
   const handleLogin = async (username, password, handleInvalidUser) => {
-    const usersStr = await AsyncStorage.getItem("users");
+    const usersStr = await AsyncStorage.getItem(IM_USERS);
     const users = JSON.parse(usersStr);
     let userFound = false;
     for (let i = 0; i < users.length; i++) {
-      const user = users[i];
-      if (user.username === username) {
+      const userDB = users[i];
+      if (userDB.username.toLowerCase() === username.trim().toLowerCase()) {
         userFound = true;
-        if (user.password === password) {
+        if (userDB.password === password) {
           await AsyncStorage.setItem(
-            "loggedIn",
+            IM_LOGGED_IN,
             JSON.stringify(getUserObject(username, password))
           );
           handleInvalidUser("");
+          navigation.navigate(BarcodeScannerRoute);
         } else {
           handleInvalidUser("Invalid password.");
         }
@@ -43,12 +43,10 @@ function Login() {
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={styles.keyboardContainer}
       >
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <View style={[styles.loginForm]}>
-            <Text style={[styles.loginHeading, styles.font]}>Inventory</Text>
-            <LoginForm handleLogin={handleLogin} />
-          </View>
-        </TouchableWithoutFeedback>
+        <View style={[styles.loginForm]}>
+          <Text style={[styles.loginHeading, styles.font]}>Inventory</Text>
+          <LoginForm handleLogin={handleLogin} />
+        </View>
       </KeyboardAvoidingView>
     </View>
   );

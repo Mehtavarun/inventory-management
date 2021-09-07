@@ -12,7 +12,8 @@ function LoginForm(props) {
   const [loginErr, setLoginErr] = React.useState("");
   const [secureTextEntry, setSecureTextEntry] = React.useState(true);
 
-  const { colors } = props.theme;
+  const { theme } = props;
+  const { colors } = theme;
 
   const handleLogin = () => {
     if (isValidated()) {
@@ -69,6 +70,7 @@ function LoginForm(props) {
         secureTextEntry={secureTextEntry}
         onChangeText={setPassword}
         value={password}
+        autoCapitalize="none"
         placeholder="Password"
         error={passwordErr.length !== 0}
         right={passwordEyeIcon}
