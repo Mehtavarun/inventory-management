@@ -26,7 +26,7 @@ const data = [
 function ProductDetails() {
   const [screenHeight, setScreenHeight] = React.useState(0);
 
-  onContentSizeChange = (contentWidth, contentHeight) => {
+  const onContentSizeChange = (contentWidth, contentHeight) => {
     setScreenHeight(contentHeight);
   };
   return (
@@ -72,11 +72,15 @@ function ProductDetails() {
           </View>
         </View>
         <View style={styles.productDetailedInformation}>
-          {data.map((item, index) => (
-            <Text key={index} style={styles.item}>
-              {item.key}
-            </Text>
-          ))}
+          <Text style={styles.productInformationHeading}>Details</Text>
+          <View style={styles.productSpecList}>
+            {data.map((item, index) => (
+              <Text key={index} style={styles.productSpec}>
+                {index + 1 + ". "}
+                {item.key}
+              </Text>
+            ))}
+          </View>
         </View>
       </View>
     </ScrollView>

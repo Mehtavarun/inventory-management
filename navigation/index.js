@@ -5,12 +5,14 @@ import LoginScreen from "../component/login";
 import BarcodeScannerScreen from "../component/barcode";
 import ProductListScreen from "../component/productList";
 import ProductDetailsScreen from "../component/productDetails";
+import ProductFormScreen from "../component/productForm";
 import Header from "../component/header";
 import {
   Login,
   BarcodeScanner,
   ProductList,
   ProductDetails,
+  ProductForm,
 } from "../component/utils/constants";
 
 const Stack = createNativeStackNavigator();
@@ -46,6 +48,11 @@ function Routes() {
           name={ProductDetails.route}
           component={ProductDetailsScreen}
           options={{ headerShown: true, title: ProductDetails.title }}
+        />
+        <Stack.Screen
+          name={ProductForm.route}
+          component={ProductFormScreen}
+          options={{ headerShown: true, title: ProductForm.title }}
         />
       </Stack.Navigator>
     </NavigationContainer>

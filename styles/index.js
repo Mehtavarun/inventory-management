@@ -126,6 +126,18 @@ export default StyleSheet.create({
     color: "#424242",
   },
   productDetailedInformation: {
-    overflow: "scroll",
+    marginTop: 23,
+    marginLeft: 3,
+  },
+  productSpecList: {
+    marginTop: 5,
+  },
+  productInformationHeading: {
+    fontSize: 19,
+    color: "#212121",
+  },
+  productSpec: {
+    fontSize: 15,
+    color: "#424242",
   },
 });

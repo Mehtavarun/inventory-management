@@ -6,6 +6,10 @@ export const ProductDetails = {
   route: "ProductDetails",
   title: "Product Details",
 };
+export const ProductForm = {
+  route: "ProductForm",
+  title: "Product Details",
+};
 
 // user
 export const IM_LOGGED_IN = "imLoggedIn";
