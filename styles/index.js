@@ -45,7 +45,6 @@ export default StyleSheet.create({
     flex: 1,
   },
   productDetailsContainer: {
-    flex: 1,
     flexDirection: "column",
     justifyContent: "flex-start",
     backgroundColor: "#F5FCFF",
@@ -125,5 +124,8 @@ export default StyleSheet.create({
     fontSize: 16,
     marginTop: 3,
     color: "#424242",
+  },
+  productDetailedInformation: {
+    overflow: "scroll",
   },
 });

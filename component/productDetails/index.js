@@ -1,10 +1,41 @@
 import React from "react";
-import { View, Image, Text } from "react-native";
+import {
+  View,
+  Image,
+  Text,
+  FlatList,
+  ScrollView,
+  Dimensions,
+} from "react-native";
 import styles from "../../styles";
 
+const { height } = Dimensions.get("window");
+const data = [
+  { key: "Devin" },
+  { key: "Dan" },
+  { key: "Dominic" },
+  { key: "Jackson" },
+  { key: "James" },
+  { key: "Joel" },
+  { key: "John" },
+  { key: "Jillian" },
+  { key: "Jimmy" },
+  { key: "Julie" },
+];
+
 function ProductDetails() {
+  const [screenHeight, setScreenHeight] = React.useState(0);
+
+  onContentSizeChange = (contentWidth, contentHeight) => {
+    setScreenHeight(contentHeight);
+  };
   return (
-    <View style={styles.productDetailsContainer}>
+    <ScrollView
+      style={{ flex: 1 }}
+      contentContainerStyle={styles.productDetailsContainer}
+      scrollEnabled={screenHeight > height}
+      onContentSizeChange={onContentSizeChange}
+    >
       <View style={styles.productDetailsHeading}>
         <Text style={styles.productDetailsHeadingBarcodeId}>
           #{"123456789056"}
@@ -40,8 +71,15 @@ function ProductDetails() {
             <Text style={styles.productDetailsDateText}>{"29-08-2021"}</Text>
           </View>
         </View>
+        <View style={styles.productDetailedInformation}>
+          {data.map((item, index) => (
+            <Text key={index} style={styles.item}>
+              {item.key}
+            </Text>
+          ))}
+        </View>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
