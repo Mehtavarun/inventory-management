@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { Text, Button } from "react-native-paper";
 import { BarCodeScanner } from "expo-barcode-scanner";
+import { ProductDetails } from "../utils/constants";
 
-function Barcode() {
+function Scanner(props) {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
+
+  const { navigation } = props;
 
   useEffect(() => {
     (async () => {
@@ -16,7 +19,7 @@ function Barcode() {
 
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
-    alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+    navigation.navigate(ProductDetails.route, { productId: data });
   };
 
   if (hasPermission === null) {
@@ -47,4 +50,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Barcode;
+export default Scanner;

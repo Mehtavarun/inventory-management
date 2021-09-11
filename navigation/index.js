@@ -3,14 +3,14 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LoginScreen from "../component/login";
 import BarcodeScannerScreen from "../component/barcode";
-import ItemListScreen from "../component/itemList";
-import ItemScreen from "../component/item";
+import ProductListScreen from "../component/productList";
+import ProductDetailsScreen from "../component/productDetails";
 import Header from "../component/header";
 import {
   Login,
   BarcodeScanner,
-  ItemList,
-  Item,
+  ProductList,
+  ProductDetails,
 } from "../component/utils/constants";
 
 const Stack = createNativeStackNavigator();
@@ -21,7 +21,7 @@ function Routes() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName={Login.route}
+        initialRouteName={ProductDetails.route}
         screenOptions={{ header: (props) => headerComp(props) }}
       >
         <Stack.Screen
@@ -38,14 +38,14 @@ function Routes() {
           options={{ headerShown: true, title: BarcodeScanner.title }}
         />
         <Stack.Screen
-          name={ItemList.route}
-          component={ItemListScreen}
-          options={{ headerShown: true, title: ItemList.title }}
+          name={ProductList.route}
+          component={ProductListScreen}
+          options={{ headerShown: true, title: ProductList.title }}
         />
         <Stack.Screen
-          name={Item.route}
-          component={ItemScreen}
-          options={{ headerShown: true, title: Item.title }}
+          name={ProductDetails.route}
+          component={ProductDetailsScreen}
+          options={{ headerShown: true, title: ProductDetails.title }}
         />
       </Stack.Navigator>
     </NavigationContainer>

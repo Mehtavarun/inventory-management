@@ -44,4 +44,86 @@ export default StyleSheet.create({
   keyboardContainer: {
     flex: 1,
   },
+  productDetailsContainer: {
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    backgroundColor: "#F5FCFF",
+  },
+  productDetailImageContainer: {
+    flex: 1,
+    width: "100%",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    backgroundColor: "#F5FCFF",
+    minHeight: 400,
+    maxHeight: 410,
+    paddingLeft: 30,
+    paddingRight: 30,
+  },
+  productDetailImg: {
+    width: "100%",
+    height: 400,
+    justifyContent: "center",
+    resizeMode: "contain",
+    shadowColor: "#202020",
+    shadowOffset: { width: 0, height: 0 },
+    shadowRadius: 5,
+  },
+  productDetails: {
+    margin: 20,
+  },
+  productDetailsHeading: {
+    marginTop: 14,
+    marginLeft: 30,
+    marginBottom: 0,
+  },
+  productDetailsHeadingBarcodeId: {
+    color: "#78909C",
+  },
+  productDetailsHeadingText: {
+    margin: 5,
+    marginTop: 7,
+    marginBottom: -5,
+    fontFamily: "monospace",
+    color: "#546E7A",
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  lineSeparator: {
+    borderBottomColor: "#CFD8DC",
+    borderBottomWidth: 4,
+  },
+  productDetailsPrice: {
+    color: "#B71C1C",
+    fontSize: 20,
+  },
+  productDetailsQuantity: {
+    marginTop: 10,
+  },
+  productDetailsQuantityHeading: {
+    color: "#212121",
+    fontSize: 18,
+  },
+  productDetailsQuantityText: {
+    color: "#424242",
+    fontSize: 17,
+  },
+  productDetailsDateBox: {
+    width: 300,
+    marginLeft: 3,
+    marginTop: 15,
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  productDetailsDateHeading: {
+    color: "#212121",
+    fontSize: 19,
+  },
+  productDetailsDateText: {
+    fontSize: 16,
+    marginTop: 3,
+    color: "#424242",
+  },
 });

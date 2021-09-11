@@ -1,8 +1,8 @@
 import React from "react";
 import { View } from "react-native";
 
-function Item() {
+function ProductList() {
   return <View></View>;
 }
 
-export default Item;
+export default ProductList;
