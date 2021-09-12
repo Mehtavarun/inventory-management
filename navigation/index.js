@@ -23,7 +23,7 @@ function Routes() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName={ProductDetails.route}
+        initialRouteName={ProductList.route}
         screenOptions={{ header: (props) => headerComp(props) }}
       >
         <Stack.Screen

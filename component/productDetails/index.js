@@ -1,12 +1,5 @@
-import React from "react";
-import {
-  View,
-  Image,
-  Text,
-  FlatList,
-  ScrollView,
-  Dimensions,
-} from "react-native";
+import React, { useEffect } from "react";
+import { View, Image, Text, ScrollView, Dimensions } from "react-native";
 import styles from "../../styles";
 
 const { height } = Dimensions.get("window");
@@ -23,8 +16,13 @@ const data = [
   { key: "Julie" },
 ];
 
-function ProductDetails() {
+function ProductDetails(props) {
   const [screenHeight, setScreenHeight] = React.useState(0);
+  const { route } = props;
+
+  useEffect(() => {
+    // console.log(route.params.productId);
+  });
 
   const onContentSizeChange = (contentWidth, contentHeight) => {
     setScreenHeight(contentHeight);

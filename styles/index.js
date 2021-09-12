@@ -1,4 +1,4 @@
-import { Dimensions, StyleSheet } from "react-native";
+import { Dimensions, StyleSheet, StatusBar } from "react-native";
 
 export default StyleSheet.create({
   font: {
@@ -139,5 +139,62 @@ export default StyleSheet.create({
   productSpec: {
     fontSize: 15,
     color: "#424242",
+  },
+  productListContainer: {
+    flex: 1,
+    backgroundColor: "#F5FCFF",
+  },
+  productListItem: {
+    marginVertical: 4,
+    marginHorizontal: 6,
+    fontSize: 10,
+  },
+  productListItemBox: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    borderColor: "#fff",
+    borderWidth: 1.5,
+  },
+  productListItemImageBox: {
+    marginRight: 10,
+  },
+  productListItemImage: {
+    height: 90,
+    width: 90,
+  },
+  productListItemDetailsBox: {
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "space-between",
+    paddingTop: 3,
+  },
+  productListItemDetailsRow2: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginRight: 30,
+  },
+  productListItemNameBox: {
+    flex: 1,
+  },
+  productListItemNameText: {
+    fontSize: 16,
+    color: "#616161",
+    fontFamily: "sans-serif-medium",
+  },
+  productListItemPriceText: {
+    fontSize: 18,
+    color: "#B71C1C",
+  },
+  productListItemInStockText: {
+    fontSize: 16,
+    color: "#2E7D32",
+    fontFamily: "sans-serif-light",
+  },
+  productListItemOutOfStockText: {
+    fontSize: 16,
+    color: "#DD2C00",
+    fontFamily: "sans-serif-light",
   },
 });
