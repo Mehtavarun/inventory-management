@@ -1,16 +1,14 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import LoginScreen from "../component/login";
 import BarcodeScannerScreen from "../component/barcode";
-import ProductListScreen from "../component/productList";
+import CartScreen from "../component/cart";
 import ProductDetailsScreen from "../component/productDetails";
 import ProductFormScreen from "../component/productForm";
 import Header from "../component/header";
 import {
-  Login,
   BarcodeScanner,
-  ProductList,
+  Cart,
   ProductDetails,
   ProductForm,
 } from "../component/utils/constants";
@@ -23,26 +21,18 @@ function Routes() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName={ProductList.route}
+        initialRouteName={Cart.route}
         screenOptions={{ header: (props) => headerComp(props) }}
       >
-        <Stack.Screen
-          name={Login.route}
-          component={LoginScreen}
-          options={{
-            headerShown: false,
-            title: Login.title,
-          }}
-        />
         <Stack.Screen
           name={BarcodeScanner.route}
           component={BarcodeScannerScreen}
           options={{ headerShown: true, title: BarcodeScanner.title }}
         />
         <Stack.Screen
-          name={ProductList.route}
-          component={ProductListScreen}
-          options={{ headerShown: true, title: ProductList.title }}
+          name={Cart.route}
+          component={CartScreen}
+          options={{ headerShown: true, title: Cart.title }}
         />
         <Stack.Screen
           name={ProductDetails.route}

@@ -1,74 +1,41 @@
-import React from "react";
-import {
-  View,
-  FlatList,
-  Text,
-  SafeAreaView,
-  Image,
-  TouchableHighlight,
-  Dimensions,
-} from "react-native";
+import React, { useState } from "react";
+import { FlatList, SafeAreaView, Alert } from "react-native";
+import { Button } from "react-native-paper";
 import styles from "../../styles";
-import { ProductDetails } from "../utils/constants";
-import Pagination from "./pagination";
+import CartItem from "../cartItem";
 
-function ProductList(props) {
+function Cart(props) {
   const { navigation } = props;
+  const [items, setItems] = useState(data);
 
-  const renderItem = ({ item }) => (
-    <TouchableHighlight
-      style={styles.productListItem}
-      onPress={() =>
-        navigation.navigate({
-          name: ProductDetails.route,
-          params: { productId: item.id },
-        })
-      }
-      underlayColor="#ECEFF1"
-      activeOpacity={0.6}
-    >
-      <View style={styles.productListItemBox}>
-        <View style={styles.productListItemImageBox}>
-          <Image
-            source={{
-              uri: item.image,
-            }}
-            style={styles.productListItemImage}
-          />
-        </View>
-        <View style={styles.productListItemDetailsBox}>
-          <View style={styles.productListItemNameBox}>
-            <Text style={styles.productListItemNameText}>{item.name}</Text>
-          </View>
-          <View style={styles.productListItemDetailsRow2}>
-            <Text style={styles.productListItemPriceText}>${item.price}</Text>
-            {item.quantity > 0 ? (
-              <Text style={styles.productListItemInStockText}>In stock</Text>
-            ) : (
-              <Text style={styles.productListItemOutOfStockText}>
-                Out of stock
-              </Text>
-            )}
-          </View>
-        </View>
-      </View>
-    </TouchableHighlight>
-  );
+  const handleClearCart = () => {
+    Alert.alert("Clear all items from cart?", "", [
+      {
+        text: "Cancel",
+        style: "cancel",
+      },
+      { text: "OK", onPress: () => setItems([]) },
+    ]);
+  };
 
   return (
     <SafeAreaView style={styles.productListContainer}>
       <FlatList
-        data={data}
-        renderItem={renderItem}
+        data={items}
+        renderItem={({ item }) => (
+          <CartItem item={item} navigation={navigation} />
+        )}
         keyExtractor={(item) => item.id}
         style={{ flex: 1, flexDirection: "column" }}
       />
-      <Pagination />
+      <Button mode="contained" color="#D32F2F" onPress={handleClearCart}>
+        CLEAR CART
+      </Button>
     </SafeAreaView>
   );
 }
 
-export default ProductList;
+export default Cart;
 
 const data = [
   {

@@ -7,43 +7,6 @@ export default StyleSheet.create({
     fontWeight: "300",
     lineHeight: 58,
   },
-  loginHeading: {
-    marginBottom: 60,
-    color: "#546E7A",
-  },
-  loginInput: {
-    marginBottom: 6,
-    marginTop: 4,
-  },
-  loginButton: {
-    marginTop: 15,
-  },
-  backgroundColor: {
-    backgroundColor: "#ECEFF1",
-  },
-  loginContainer: {
-    flex: 1,
-    height: Dimensions.get("window").height,
-    width: Dimensions.get("window").width,
-  },
-  loginForm: {
-    justifyContent: "center",
-    flex: 1,
-    paddingLeft: 15,
-    paddingRight: 15,
-  },
-  loginSurface: {
-    paddingLeft: 15,
-    paddingRight: 15,
-    paddingTop: 30,
-    paddingBottom: 30,
-    justifyContent: "center",
-    elevation: 10,
-    borderRadius: 7,
-  },
-  keyboardContainer: {
-    flex: 1,
-  },
   productDetailsContainer: {
     flexDirection: "column",
     justifyContent: "flex-start",
@@ -142,59 +105,83 @@ export default StyleSheet.create({
   },
   productListContainer: {
     flex: 1,
-    backgroundColor: "#F5FCFF",
+    backgroundColor: "#fff",
   },
-  productListItem: {
+  productCart: {
     marginVertical: 4,
     marginHorizontal: 6,
     fontSize: 10,
   },
-  productListItemBox: {
+  cartBox: {
+    flex: 1,
+    flexDirection: "column",
+    borderRadius: 3,
+    elevation: 2,
+  },
+  productCartBox: {
     flex: 1,
     flexDirection: "row",
     justifyContent: "flex-start",
-    borderColor: "#fff",
-    borderWidth: 1.5,
   },
-  productListItemImageBox: {
+  productCartImageBox: {
+    margin: 7,
     marginRight: 10,
   },
-  productListItemImage: {
+  productCartImage: {
     height: 90,
     width: 90,
   },
-  productListItemDetailsBox: {
+  productCartDetailsBox: {
     flex: 1,
     flexDirection: "column",
-    justifyContent: "space-between",
     paddingTop: 3,
   },
-  productListItemDetailsRow2: {
+  productCartDetailsRow2: {
     flex: 1,
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-evenly",
+    alignItems: "flex-end",
     marginRight: 30,
   },
-  productListItemNameBox: {
+  productCartNameBox: {
     flex: 1,
   },
-  productListItemNameText: {
+  productCartNameText: {
     fontSize: 16,
-    color: "#616161",
+    color: "#263238",
     fontFamily: "sans-serif-medium",
   },
-  productListItemPriceText: {
+  productCartPriceText: {
     fontSize: 18,
     color: "#B71C1C",
   },
-  productListItemInStockText: {
-    fontSize: 16,
-    color: "#2E7D32",
-    fontFamily: "sans-serif-light",
+  productCartQuantityBox: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    marginBottom: 4,
   },
-  productListItemOutOfStockText: {
-    fontSize: 16,
-    color: "#DD2C00",
-    fontFamily: "sans-serif-light",
+  productCartQuantityControlBtn: {
+    backgroundColor: "#ECEFF1",
+    textAlign: "center",
+    textAlignVertical: "center",
+    minWidth: 25,
+    minHeight: 25,
+    maxHeight: 25,
+    maxWidth: 25,
+    color: "black",
+  },
+  productCartQauntityTextInput: {
+    backgroundColor: "#CFD8DC",
+    textAlign: "center",
+    minWidth: 25,
+    minHeight: 25,
+    maxHeight: 25,
+    maxWidth: 25,
+  },
+  productCartItemRemoveBtn: {
+    elevation: 0,
+    margin: 2,
+    marginTop: 0,
   },
 });

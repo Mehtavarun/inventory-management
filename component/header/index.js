@@ -1,6 +1,5 @@
 import React from "react";
 import { Appbar, withTheme } from "react-native-paper";
-import Logout from "../logout";
 import { CommonActions } from "@react-navigation/native";
 
 function Header(props) {
@@ -14,7 +13,6 @@ function Header(props) {
         />
       )}
       <Appbar.Content title={options.title} />
-      <Logout />
     </Appbar.Header>
   );
 }
