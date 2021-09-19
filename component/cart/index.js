@@ -9,6 +9,9 @@ function Cart(props) {
   const [items, setItems] = useState(data);
 
   const handleClearCart = () => {
+    if (items.length === 0) {
+      return;
+    }
     Alert.alert("Clear all items from cart?", "", [
       {
         text: "Cancel",
@@ -18,17 +21,32 @@ function Cart(props) {
     ]);
   };
 
+  const handleDeleteItem = (id) => {
+    const oldItems = [...items];
+    const newItems = oldItems.filter((item) => item.id !== id);
+    setItems(newItems);
+  };
+
   return (
     <SafeAreaView style={styles.productListContainer}>
       <FlatList
         data={items}
         renderItem={({ item }) => (
-          <CartItem item={item} navigation={navigation} />
+          <CartItem
+            item={item}
+            navigation={navigation}
+            deleteItem={handleDeleteItem}
+          />
         )}
         keyExtractor={(item) => item.id}
         style={{ flex: 1, flexDirection: "column" }}
       />
-      <Button mode="contained" color="#D32F2F" onPress={handleClearCart}>
+      <Button
+        mode="contained"
+        color="#D32F2F"
+        onPress={handleClearCart}
+        disabled={items.length === 0}
+      >
         CLEAR CART
       </Button>
     </SafeAreaView>

@@ -89,7 +89,7 @@ function CartItem(props) {
           mode="contained"
           color="#fff"
           style={styles.productCartItemRemoveBtn}
-          onPress={() => console.log("Pressed")}
+          onPress={() => props.deleteItem(item.id)}
         >
           REMOVE
         </Button>
