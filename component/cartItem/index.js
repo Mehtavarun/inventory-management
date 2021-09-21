@@ -9,12 +9,6 @@ function CartItem(props) {
 
   const [quantity, setQuantity] = useState(1);
 
-  const decrementQuantity = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-    }
-  };
-
   return (
     <TouchableHighlight
       style={styles.productCart}
@@ -29,47 +23,23 @@ function CartItem(props) {
     >
       <View style={styles.cartBox}>
         <View style={styles.productCartBox}>
-          <View style={styles.productCartImageBox}>
-            <Image
-              source={{
-                uri: item.image,
-              }}
-              style={styles.productCartImage}
-            />
-          </View>
           <View style={styles.productCartDetailsBox}>
             <Text style={styles.productCartNameText}>{item.name}</Text>
             <View style={{ marginTop: 5 }}>
               <Text style={{ color: "#1976D2" }}>
-                Added on: <Text style={{ fontWeight: "bold" }}>20-02-2021</Text>
+                <Text style={{ fontWeight: "bold" }}>Details 1</Text>
               </Text>
             </View>
             <View style={styles.productCartDetailsRow2}>
-              <View>
-                <Text style={styles.productCartPriceText}>${item.price}</Text>
-              </View>
+              <Text style={styles.productCartPriceText}>${item.price}</Text>
               <View style={styles.productCartQuantityBox}>
                 <Text
                   style={[
                     styles.productCartQuantityControlBtn,
-                    { fontSize: 20 },
+                    { fontSize: 15 },
                   ]}
-                  onPress={decrementQuantity}
                 >
-                  -
-                </Text>
-                <TextInput
-                  style={styles.productCartQauntityTextInput}
-                  value={quantity.toString()}
-                />
-                <Text
-                  style={[
-                    styles.productCartQuantityControlBtn,
-                    { fontSize: 18 },
-                  ]}
-                  onPress={() => setQuantity(quantity + 1)}
-                >
-                  +
+                  Qty: {quantity}
                 </Text>
               </View>
             </View>
@@ -84,15 +54,6 @@ function CartItem(props) {
             alignSelf: "center",
           }}
         />
-        <Button
-          icon="delete"
-          mode="contained"
-          color="#fff"
-          style={styles.productCartItemRemoveBtn}
-          onPress={() => props.deleteItem(item.id)}
-        >
-          REMOVE
-        </Button>
       </View>
     </TouchableHighlight>
   );

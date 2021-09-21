@@ -122,6 +122,7 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     justifyContent: "flex-start",
+    marginLeft: 10,
   },
   productCartImageBox: {
     margin: 7,
@@ -165,10 +166,6 @@ export default StyleSheet.create({
     backgroundColor: "#ECEFF1",
     textAlign: "center",
     textAlignVertical: "center",
-    minWidth: 25,
-    minHeight: 25,
-    maxHeight: 25,
-    maxWidth: 25,
     color: "black",
   },
   productCartQauntityTextInput: {
