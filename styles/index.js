@@ -181,4 +181,25 @@ export default StyleSheet.create({
     margin: 2,
     marginTop: 0,
   },
+  productFormContainer: {
+    flex: 1,
+  },
+  productFormBox: {
+    margin: 10,
+  },
+  productForm: {
+    margin: 30,
+  },
+  productFormHeadingBox: {
+    marginTop: 20,
+    marginLeft: 30,
+    marginBottom: 0,
+  },
+  productFormHeadingProductId: {
+    color: "#78909C",
+  },
+  productFormTextInput: {
+    backgroundColor: "white",
+    height: 58,
+  },
 });

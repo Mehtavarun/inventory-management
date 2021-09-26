@@ -21,7 +21,7 @@ function Routes() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName={Cart.route}
+        initialRouteName={ProductForm.route}
         screenOptions={{ header: (props) => headerComp(props) }}
       >
         <Stack.Screen

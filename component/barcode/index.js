@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { Text, Button } from "react-native-paper";
 import { BarCodeScanner } from "expo-barcode-scanner";
-import { ProductDetails } from "../utils/constants";
+import { ProductDetails, ProductForm } from "../utils/constants";
+import { existsByIdInProducts } from "../utils/service";
 
 function Scanner(props) {
   const [hasPermission, setHasPermission] = useState(null);
@@ -19,7 +20,11 @@ function Scanner(props) {
 
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
-    navigation.navigate(ProductDetails.route, { productId: data });
+    if (existsByIdInProducts(data)) {
+      navigation.navigate(ProductDetails.route, { productId: data });
+    } else {
+      navigation.navigate(ProductForm.route, { productId: data });
+    }
   };
 
   if (hasPermission === null) {

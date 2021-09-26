@@ -6,9 +6,11 @@ export const ProductDetails = {
 };
 export const ProductForm = {
   route: "ProductForm",
-  title: "Product Details",
+  title: "Add Details",
 };
 export const Cart = {
   route: "Cart",
   title: "Cart",
 };
+
+export const Products = "products";
