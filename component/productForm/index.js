@@ -1,17 +1,23 @@
 import React, { useState } from "react";
-import { View, Text, FlatList } from "react-native";
-import { TextInput } from "react-native-paper";
+import { View, FlatList, TextInput as NativeTextInput } from "react-native";
+import { TextInput, Text, Button } from "react-native-paper";
 import styles from "../../styles";
 import ProductDetailItem from "./productDetailItem";
+import { Picker } from "@react-native-picker/picker";
 
 function ProductForm(props) {
   const { route } = props;
+  const detailsLimit = 10;
+  const defaultSelectedLanguage = "units";
 
   const productId = "#" + (route?.params?.productId || "000000000");
   const [quantity, setQuantity] = useState(1);
   const [heading, setHeading] = useState("");
   const [price, setPrice] = useState("");
   const [details, setDetails] = useState([""]);
+  const [selectedLanguage, setSelectedLanguage] = useState(
+    defaultSelectedLanguage
+  );
 
   const decrementQuantity = () => {
     if (quantity > 1) {
@@ -20,7 +26,9 @@ function ProductForm(props) {
   };
 
   const addProductDetailItem = () => {
-    setDetails([...details, ""]);
+    if (details.length < detailsLimit) {
+      setDetails([...details, ""]);
+    }
   };
 
   const removeProductDetailItem = (index) => {
@@ -29,6 +37,10 @@ function ProductForm(props) {
     }
     const tempDetails = details.filter((item, i) => index !== i);
     setDetails(tempDetails);
+  };
+
+  const handleSubmitProductForm = () => {
+    console.log("submitted");
   };
 
   return (
@@ -43,7 +55,7 @@ function ProductForm(props) {
             onChange={setHeading}
             placeholder="Heading"
             label="Heading"
-            mode="compact"
+            mode="flat"
             style={styles.productFormTextInput}
           />
           <TextInput
@@ -51,13 +63,50 @@ function ProductForm(props) {
             onChange={setPrice}
             placeholder="0.00$"
             label="Price"
-            mode="compact"
+            mode="flat"
             style={styles.productFormTextInput}
             keyboardType="number-pad"
           />
+          <View style={styles.productCartQuantityBox}>
+            <Text style={styles.productFormQuantityHeadingText}>
+              Quantity:{" "}
+            </Text>
+            <Text
+              style={[styles.productCartQuantityControlBtn, { fontSize: 20 }]}
+              onPress={decrementQuantity}
+            >
+              -
+            </Text>
+            <NativeTextInput
+              style={styles.productCartQauntityTextInput}
+              value={quantity.toString()}
+              keyboardType="number-pad"
+            />
+            <Text
+              style={[styles.productCartQuantityControlBtn, { fontSize: 18 }]}
+              onPress={() => setQuantity(quantity + 1)}
+            >
+              +
+            </Text>
+            <Picker
+              selectedValue={selectedLanguage}
+              onValueChange={(itemValue, itemIndex) =>
+                setSelectedLanguage(itemValue)
+              }
+              style={styles.productFormUnitPicker}
+            >
+              <Picker.Item label="Units" value="units" />
+              <Picker.Item label="Gram" value="gram" />
+              <Picker.Item label="Kilogram" value="kilogram" />
+              <Picker.Item label="Pound" value="pound" />
+              <Picker.Item label="Ounce" value="ounce" />
+              <Picker.Item label="Litre" value="litre" />
+            </Picker>
+          </View>
           <FlatList
             keyExtractor={(item, index) => index.toString()}
             data={details}
+            style={styles.productFormDetailsFlatList}
             renderItem={(item) => (
               <ProductDetailItem
                 item={item.item}
@@ -68,26 +117,15 @@ function ProductForm(props) {
               />
             )}
           />
+          <Button
+            mode="contained"
+            onPress={handleSubmitProductForm}
+            style={{ margin: 10 }}
+          >
+            Add Item
+          </Button>
         </View>
       </View>
-      {/* <View style={styles.productCartQuantityBox}>
-        <Text
-          style={[styles.productCartQuantityControlBtn, { fontSize: 20 }]}
-          onPress={decrementQuantity}
-        >
-          -
-        </Text>
-        <TextInput
-          style={styles.productCartQauntityTextInput}
-          value={quantity.toString()}
-        />
-        <Text
-          style={[styles.productCartQuantityControlBtn, { fontSize: 18 }]}
-          onPress={() => setQuantity(quantity + 1)}
-        >
-          +
-        </Text>
-      </View> */}
     </View>
   );
 }

@@ -28,11 +28,13 @@ export default function ProductDetailItem(props) {
   return (
     <TextInput
       value={detail}
-      placeholder="detail"
-      label="Detail"
-      mode="compact"
+      label={"#" + (index + 1) + " Detail"}
       onChangeText={(text) => handleSetDetails(text)}
-      style={styles.productFormTextInput}
+      style={[
+        styles.productFormTextInput,
+        { marginLeft: 2, marginRight: 2, borderBottomWidth: 0 },
+      ]}
+      mode="flat"
       onBlur={handleBlurEvent}
     />
   );

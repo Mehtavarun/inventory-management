@@ -159,22 +159,29 @@ export default StyleSheet.create({
   productCartQuantityBox: {
     flex: 1,
     flexDirection: "row",
-    justifyContent: "flex-end",
-    marginBottom: 4,
+    justifyContent: "space-between",
+    alignItems: "flex-start",
+    marginTop: 30,
+    marginBottom: 50,
   },
   productCartQuantityControlBtn: {
     backgroundColor: "#ECEFF1",
     textAlign: "center",
     textAlignVertical: "center",
     color: "black",
+    minWidth: 30,
+    maxWidth: 30,
+    minHeight: 30,
+    maxHeight: 30,
   },
   productCartQauntityTextInput: {
     backgroundColor: "#CFD8DC",
     textAlign: "center",
-    minWidth: 25,
-    minHeight: 25,
-    maxHeight: 25,
-    maxWidth: 25,
+    textAlignVertical: "center",
+    minWidth: 40,
+    maxWidth: 40,
+    minHeight: 30,
+    maxHeight: 30,
   },
   productCartItemRemoveBtn: {
     elevation: 0,
@@ -182,13 +189,18 @@ export default StyleSheet.create({
     marginTop: 0,
   },
   productFormContainer: {
+    backgroundColor: "white",
     flex: 1,
   },
   productFormBox: {
     margin: 10,
   },
   productForm: {
-    margin: 30,
+    borderWidth: 0.7,
+    borderColor: "#CFD8DC",
+    margin: 10,
+    padding: 20,
+    marginTop: 0,
   },
   productFormHeadingBox: {
     marginTop: 20,
@@ -201,5 +213,24 @@ export default StyleSheet.create({
   productFormTextInput: {
     backgroundColor: "white",
     height: 58,
+    marginBottom: 20,
+    elevation: 2,
+    margin: 5,
+  },
+  productFormQuantityHeadingText: {
+    fontSize: 17,
+    color: "#78909C",
+    marginRight: 10,
+    marginLeft: 5,
+  },
+  productFormUnitPicker: {
+    minWidth: 110,
+    maxWidth: 120,
+    marginTop: 3,
+    marginLeft: 20,
+  },
+  productFormDetailsFlatList: {
+    padding: 10,
+    paddingBottom: 0,
   },
 });
