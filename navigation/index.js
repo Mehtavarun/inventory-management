@@ -21,7 +21,7 @@ function Routes() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName={ProductDetails.route}
+        initialRouteName={BarcodeScanner.route}
         screenOptions={{ header: (props) => headerComp(props) }}
       >
         <Stack.Screen

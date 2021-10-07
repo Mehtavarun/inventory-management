@@ -18,6 +18,8 @@ function ProductDetails(props) {
   const { route, navigation } = props;
   const productId = "#" + (route?.params?.productId || "000000000");
 
+  const invalidProductId = "#000000000";
+
   useEffect(() => {
     (async () => {
       const product = await getItemByProductId(productId);
@@ -38,11 +40,13 @@ function ProductDetails(props) {
 
   const handleAddItem = async () => {
     const cartItems = (await getJSONItem(CartItems)) || [];
-    if (!cartItems.includes(productId)) {
-      cartItems.push(productId);
-      alert("Item added to cart");
-    } else {
-      alert("item is already present in cart");
+    if (invalidProductId !== productId) {
+      if (!cartItems.includes(productId)) {
+        cartItems.push(productId);
+        alert("Item added to cart");
+      } else {
+        alert("item is already present in cart");
+      }
     }
     navigation.navigate(BarcodeScanner.route);
   };
