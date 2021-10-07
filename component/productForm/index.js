@@ -46,12 +46,17 @@ function ProductForm(props) {
 
   const handleSubmitProductForm = async () => {
     if (isValidated()) {
-      const products = await getJSONItem(Products);
-      products.push({
+      let detailList = details;
+      if (details.length === 1 && details[0].trim().length === 0) {
+        detailList = [];
+      }
+      const products = (await getJSONItem(Products)) || { value: [] };
+      products.value.push({
         heading,
         quantity,
         price,
-        details,
+        detail: detailList,
+        addedDate: new Date(),
       });
 
       await setJSONItem(Products, products);

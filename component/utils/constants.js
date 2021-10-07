@@ -14,3 +14,4 @@ export const Cart = {
 };
 
 export const Products = "products";
+export const CartItems = "cartItems";
