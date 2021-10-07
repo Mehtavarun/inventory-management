@@ -18,9 +18,9 @@ function Scanner(props) {
     })();
   }, []);
 
-  const handleBarCodeScanned = ({ type, data }) => {
+  const handleBarCodeScanned = async ({ type, data }) => {
     setScanned(true);
-    if (existsByIdInProducts(data)) {
+    if (await existsByIdInProducts(data)) {
       navigation.navigate(ProductDetails.route, { productId: data });
     } else {
       navigation.navigate(ProductForm.route, { productId: data });

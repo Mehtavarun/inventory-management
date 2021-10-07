@@ -4,10 +4,12 @@ import { TextInput, Text, Button } from "react-native-paper";
 import styles from "../../styles";
 import ProductDetailItem from "./productDetailItem";
 import { Picker } from "@react-native-picker/picker";
+import { BarcodeScanner, Products } from "../utils/constants";
+import { getJSONItem, setJSONItem } from "../utils/service";
 
 function ProductForm(props) {
-  const { route } = props;
-  const detailsLimit = 10;
+  const { route, navigation } = props;
+  const detailsLimit = 1000;
   const defaultSelectedLanguage = "units";
 
   const productId = "#" + (route?.params?.productId || "000000000");
@@ -18,6 +20,9 @@ function ProductForm(props) {
   const [selectedLanguage, setSelectedLanguage] = useState(
     defaultSelectedLanguage
   );
+  const [quantityErr, setQuantityErr] = useState("");
+  const [headingErr, setHeadingErr] = useState("");
+  const [priceErr, setPriceErr] = useState("");
 
   const decrementQuantity = () => {
     if (quantity > 1) {
@@ -39,8 +44,84 @@ function ProductForm(props) {
     setDetails(tempDetails);
   };
 
-  const handleSubmitProductForm = () => {
-    console.log("submitted");
+  const handleSubmitProductForm = async () => {
+    if (isValidated()) {
+      const products = await getJSONItem(Products);
+      products.push({
+        heading,
+        quantity,
+        price,
+        details,
+      });
+
+      await setJSONItem(Products, products);
+
+      alert("item added");
+
+      navigation.navigate(BarcodeScanner.route);
+    }
+  };
+
+  const isValidated = () => {
+    let validated = true;
+
+    if (heading.trim().length === 0) {
+      validated = false;
+      setHeadingErr("Field is required");
+    }
+
+    validated = isValidatedQuantity(quantity);
+    validated = isValidatedPrice(price);
+
+    return validated;
+  };
+
+  const isValidatedPrice = (priceText) => {
+    let validated = true;
+    if (priceText.trim().length === 0) {
+      validated = false;
+      setPriceErr("Required");
+    } else if (isNaN(priceText)) {
+      validated = false;
+      setPriceErr("Invalid price.");
+    } else if (Number.parseFloat(priceText) < 0) {
+      validated = false;
+      setPriceErr("Invalid price.");
+    }
+    return validated;
+  };
+
+  const isValidatedQuantity = (quantityText) => {
+    let validated = true;
+    if (quantityText.length === 0) {
+      validated = false;
+      setQuantityErr("Required");
+    } else if (isNaN(quantityText)) {
+      validated = false;
+      setQuantityErr("Invalid quantity.");
+    } else if (Number.parseFloat(quantityText) <= 0) {
+      validated = false;
+      setQuantityErr("Invalid quantity.");
+    }
+    return validated;
+  };
+
+  const handleSetPrice = (priceText) => {
+    if (isValidatedPrice(priceText)) {
+      setPrice(priceText);
+    } else {
+      setPrice("");
+    }
+  };
+
+  const handleSetQuantity = ({ nativeEvent }) => {
+    const quantityText = nativeEvent.text;
+    console.log(quantityText);
+    if (isValidatedQuantity(quantityText)) {
+      setQuantity(Number.parseInt(quantityText));
+    } else {
+      setQuantity(1);
+    }
   };
 
   return (
@@ -52,20 +133,22 @@ function ProductForm(props) {
         <View style={styles.productForm}>
           <TextInput
             value={heading}
-            onChange={setHeading}
+            onChangeText={setHeading}
             placeholder="Heading"
-            label="Heading"
+            label="Heading *"
             mode="flat"
             style={styles.productFormTextInput}
+            error={headingErr.length !== 0}
           />
           <TextInput
             value={price}
-            onChange={setPrice}
+            onChangeText={handleSetPrice}
             placeholder="0.00$"
-            label="Price"
+            label="Price *"
             mode="flat"
             style={styles.productFormTextInput}
             keyboardType="number-pad"
+            error={priceErr.length !== 0}
           />
           <View style={styles.productCartQuantityBox}>
             <Text style={styles.productFormQuantityHeadingText}>
@@ -81,6 +164,8 @@ function ProductForm(props) {
               style={styles.productCartQauntityTextInput}
               value={quantity.toString()}
               keyboardType="number-pad"
+              onChangeText={setQuantity}
+              onEndEditing={handleSetQuantity}
             />
             <Text
               style={[styles.productCartQuantityControlBtn, { fontSize: 18 }]}
