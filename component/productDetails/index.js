@@ -94,7 +94,7 @@ function ProductDetails(props) {
             {details.map((item, index) => (
               <Text key={index} style={styles.productSpec}>
                 {index + 1 + ". "}
-                {item.key}
+                {item}
               </Text>
             ))}
           </View>

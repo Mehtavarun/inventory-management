@@ -50,14 +50,14 @@ function ProductForm(props) {
     }
     if (isValidated()) {
       let detailList = details;
-      detailList = detailList.filter((item) => item.trim().length !== 0) || [];
+      const newlist = detailList.filter((item) => item.trim().length !== 0);
       const products = (await getJSONItem(Products)) || { value: [] };
       products.value.push({
         id: productId,
         heading,
         quantity,
         price,
-        details: detailList,
+        details: newlist,
         addedDate: new Date().toLocaleDateString(),
       });
 
@@ -128,6 +128,12 @@ function ProductForm(props) {
     } else {
       setQuantity(1);
     }
+  };
+
+  const handleSetDetails = (index, text) => {
+    const newDetails = details;
+    newDetails[index] = text;
+    setDetails(newDetails);
   };
 
   return (
@@ -202,6 +208,7 @@ function ProductForm(props) {
               <ProductDetailItem
                 item={item.item}
                 index={item.index}
+                setDetail={handleSetDetails}
                 totalItems={details.length}
                 removeProductDetailItem={removeProductDetailItem}
                 addProductDetailItem={addProductDetailItem}

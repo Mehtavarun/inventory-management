@@ -16,6 +16,7 @@ export default function ProductDetailItem(props) {
     if (totalItems > 1 && detail.trim().length === 0) {
       removeProductDetailItem(index);
     }
+    props.setDetail(index, detail);
   };
 
   const handleSetDetails = (text) => {
