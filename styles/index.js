@@ -45,8 +45,9 @@ export default StyleSheet.create({
   },
   productDetailsHeadingText: {
     margin: 5,
-    marginTop: 7,
-    marginBottom: -5,
+    marginTop: 17,
+    // marginBottom: -5,
+    marginBottom: 30,
     fontFamily: "monospace",
     color: "#546E7A",
     fontSize: 20,
@@ -140,8 +141,8 @@ export default StyleSheet.create({
   productCartDetailsRow2: {
     flex: 1,
     flexDirection: "row",
-    justifyContent: "space-evenly",
-    alignItems: "flex-end",
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
     marginRight: 30,
   },
   productCartNameBox: {
@@ -149,6 +150,7 @@ export default StyleSheet.create({
   },
   productCartNameText: {
     fontSize: 16,
+    margin: 5,
     color: "#263238",
     fontFamily: "sans-serif-medium",
   },
@@ -159,8 +161,8 @@ export default StyleSheet.create({
   productCartQuantityBox: {
     flex: 1,
     flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "flex-start",
+    // justifyContent: "space-between",
+    // alignItems: "flex-start",
     marginTop: 30,
     marginBottom: 50,
   },
@@ -187,6 +189,10 @@ export default StyleSheet.create({
     elevation: 0,
     margin: 2,
     marginTop: 0,
+  },
+  productCartQuantityControlText: {
+    fontSize: 18,
+    color: "#B71C1C",
   },
   productFormContainer: {
     backgroundColor: "white",

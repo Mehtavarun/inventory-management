@@ -4,6 +4,7 @@ import { Text, Button } from "react-native-paper";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import { ProductDetails, ProductForm } from "../utils/constants";
 import { existsByIdInProducts } from "../utils/service";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function Scanner(props) {
   const [hasPermission, setHasPermission] = useState(null);
@@ -12,6 +13,7 @@ function Scanner(props) {
   const { navigation } = props;
 
   useEffect(() => {
+    // AsyncStorage.clear();
     (async () => {
       const { status } = await BarCodeScanner.requestPermissionsAsync();
       setHasPermission(status === "granted");

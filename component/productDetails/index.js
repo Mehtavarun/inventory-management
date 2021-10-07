@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { View, Image, Text, ScrollView, Dimensions } from "react-native";
 import { Button } from "react-native-paper";
 import styles from "../../styles";
-import { getItemByProductId, getJSONItem } from "../utils/service";
-import { BarcodeScanner, CartItems } from "../utils/constants";
+import { getItemByProductId, getJSONItem, setJSONItem } from "../utils/service";
+import { BarcodeScanner, Cart, CartItems } from "../utils/constants";
 
 const { height } = Dimensions.get("window");
 
@@ -16,23 +16,23 @@ function ProductDetails(props) {
   const [addedDate, setAddedDate] = useState(new Date().toLocaleDateString());
 
   const { route, navigation } = props;
-  const productId = "#" + (route?.params?.productId || "000000000");
+  const productId = route?.params?.productId || "000000000";
 
-  const invalidProductId = "#000000000";
+  const invalidProductId = "000000000";
 
   useEffect(() => {
-    (async () => {
+    async function setItemInfo() {
       const product = await getItemByProductId(productId);
       if (product !== null) {
-        console.log(product);
         setHeading(product.heading);
         setDetails(product.details);
         setPrice("$" + product.price);
         setQuantity(product.quantity);
         setAddedDate(product.addedDate);
       }
-    })();
-  });
+    }
+    setItemInfo();
+  }, []);
 
   const onContentSizeChange = (contentWidth, contentHeight) => {
     setScreenHeight(contentHeight);
@@ -43,12 +43,11 @@ function ProductDetails(props) {
     if (invalidProductId !== productId) {
       if (!cartItems.includes(productId)) {
         cartItems.push(productId);
-        alert("Item added to cart");
-      } else {
-        alert("item is already present in cart");
+
+        await setJSONItem(CartItems, cartItems);
       }
     }
-    navigation.navigate(BarcodeScanner.route);
+    navigation.navigate(Cart.route);
   };
 
   return (
@@ -59,7 +58,7 @@ function ProductDetails(props) {
       onContentSizeChange={onContentSizeChange}
     >
       <View style={styles.productDetailsHeading}>
-        <Text style={styles.productDetailsHeadingBarcodeId}>{productId}</Text>
+        <Text style={styles.productDetailsHeadingBarcodeId}>#{productId}</Text>
         <Text style={styles.productDetailsHeadingText}>{heading}</Text>
       </View>
       {/* <View style={styles.productDetailImageContainer}>
@@ -102,7 +101,11 @@ function ProductDetails(props) {
         </View>
       </View>
       <View>
-        <Button mode="contained" onPress={handleAddItem}>
+        <Button
+          mode="contained"
+          onPress={handleAddItem}
+          style={{ marginTop: 50 }}
+        >
           Add Item
         </Button>
       </View>

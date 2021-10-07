@@ -12,7 +12,7 @@ function ProductForm(props) {
   const detailsLimit = 1000;
   const defaultSelectedLanguage = "units";
 
-  const productId = "#" + (route?.params?.productId || "000000000");
+  const productId = route?.params?.productId || "000000000";
   const [quantity, setQuantity] = useState(1);
   const [heading, setHeading] = useState("");
   const [price, setPrice] = useState("");
@@ -45,18 +45,20 @@ function ProductForm(props) {
   };
 
   const handleSubmitProductForm = async () => {
+    if (productId === "000000000") {
+      navigation.navigate(BarcodeScanner.route);
+    }
     if (isValidated()) {
       let detailList = details;
-      if (details.length === 1 && details[0].trim().length === 0) {
-        detailList = [];
-      }
+      detailList = detailList.filter((item) => item.trim().length !== 0) || [];
       const products = (await getJSONItem(Products)) || { value: [] };
       products.value.push({
+        id: productId,
         heading,
         quantity,
         price,
-        detail: detailList,
-        addedDate: new Date(),
+        details: detailList,
+        addedDate: new Date().toLocaleDateString(),
       });
 
       await setJSONItem(Products, products);
@@ -121,7 +123,6 @@ function ProductForm(props) {
 
   const handleSetQuantity = ({ nativeEvent }) => {
     const quantityText = nativeEvent.text;
-    console.log(quantityText);
     if (isValidatedQuantity(quantityText)) {
       setQuantity(Number.parseInt(quantityText));
     } else {
@@ -132,7 +133,7 @@ function ProductForm(props) {
   return (
     <View style={styles.productFormContainer}>
       <View style={styles.productFormHeadingBox}>
-        <Text style={styles.productFormHeadingProductId}>{productId}</Text>
+        <Text style={styles.productFormHeadingProductId}>#{productId}</Text>
       </View>
       <View style={styles.productFormBox}>
         <View style={styles.productForm}>

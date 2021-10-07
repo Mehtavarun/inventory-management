@@ -24,25 +24,22 @@ function CartItem(props) {
       <View style={styles.cartBox}>
         <View style={styles.productCartBox}>
           <View style={styles.productCartDetailsBox}>
-            <Text style={styles.productCartNameText}>{item.name}</Text>
-            <View style={{ marginTop: 5 }}>
-              <Text style={{ color: "#1976D2" }}>
-                <Text style={{ fontWeight: "bold" }}>Details 1</Text>
-              </Text>
-            </View>
-            <View style={styles.productCartDetailsRow2}>
-              <Text style={styles.productCartPriceText}>${item.price}</Text>
-              <View style={styles.productCartQuantityBox}>
-                <Text
-                  style={[
-                    styles.productCartQuantityControlBtn,
-                    { fontSize: 15 },
-                  ]}
-                >
-                  Qty: {quantity}
+            <Text style={styles.productCartNameText}>{item.heading}</Text>
+            {item.details.length > 0 && (
+              <View style={{ marginTop: 5 }}>
+                <Text style={{ color: "#1976D2" }}>
+                  <Text style={{ fontWeight: "bold" }}>{item.details[0]}</Text>
                 </Text>
               </View>
-            </View>
+            )}
+            <Text style={styles.productCartPriceText}>${item.price}</Text>
+            {/* <View style={styles.productCartDetailsRow2}> */}
+            {/* <View style={styles.productCartQuantityBox}> */}
+            {/* <Text style={[styles.productCartPriceText, { fontSize: 15 }]}> */}
+            {/* Qty: {quantity}
+              </Text> */}
+            {/* </View> */}
+            {/* </View> */}
           </View>
         </View>
         <View
